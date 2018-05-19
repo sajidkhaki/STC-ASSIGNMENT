@@ -358,20 +358,23 @@
         })
 
         $("#updateStudent").click(function () {
-            $("#updateStudent").text("Updating......")
-            var updateDetails = {
-                firstName: $("#firstName").val(),
-                lastName: $("#lastName").val(),
-                age: $("#age").val(),
-                Address: $("#address").val(),
-                status: $("#studentStatus").val(),
-                remarks:$("#remarks").val()
+            if(validation.validate()) {
+                $("#updateStudent").text("Updating......")
+                var updateDetails = {
+                    firstName: $("#firstName").val(),
+                    lastName: $("#lastName").val(),
+                    age: $("#age").val(),
+                    Address: $("#address").val(),
+                    status: $("#studentStatus").val(),
+                    remarks: $("#remarks").val()
+                }
+                socket.emit("update student details", updateDetails, studentId)
             }
-            socket.emit("update student details", updateDetails, studentId)
             socket.on("student details updated", function (response) {
                 $('#studentModal').modal('hide');
                 var TypeStatus=(updateDetails.status=="1") ? "<i class ='fa fa-check'  style='color: green;'></i>":"<i class='fa fa-times' style='color: red;'" + "></i>";
                 $.notify("Student has been successfully Updated.","success");
+                $("#updateStudent").text("Update")
                 $('#studentTable').dataTable().fnUpdate([updateDetails.firstName], $("tr#" + clickedRowId)[0], 1);
                 $('#studentTable').dataTable().fnUpdate([updateDetails.lastName], $("tr#" + clickedRowId)[0], 2);
                 $('#studentTable').dataTable().fnUpdate([updateDetails.age], $("tr#" + clickedRowId)[0], 3);
