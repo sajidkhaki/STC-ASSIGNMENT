@@ -59,6 +59,12 @@
             }
             .row.content {height: auto;}
         }
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: lightblue;
+
+            }
+        }
     </style>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
@@ -81,7 +87,7 @@
                 <h4></h4>
             </div>
         </div>
-        <div class ="row" style="margin-top: 15px">
+        <div class ="row" style="margin-top: 15px" >
             <div class="col-md-10">
                 <table class="table table-striped table-bordered  table-hover" cell-spacing = "0" width = "100%" id="studentTable">
                     <thead>
@@ -219,19 +225,77 @@
             }
         })
 
-        $("#addStudent").click(function () {
-            $("#addStudent").text("Adding......")
+        // Validation
+        function Validation () {}
 
-            var studentDetails = {
-                firstName: $("#firstName").val(),
-                lastName: $("#lastName").val(),
-                age: $("#age").val(),
-                Address: $("#address").val(),
-                status: $("#studentStatus").val(),
-                remarks:$("#remarks").val()
+        Validation.prototype.validate = function()
+        {
+
+            var firstName = $("#firstName").val().replace(/\s/g,''),
+                lastName = $("#lastName").val(),
+                lastName = $("#lastName").val(),
+                age = $("#age").val(),
+                address = $("#address").val(),
+                status = $("#studentStatus :selected").val(),
+                remarks = $("#remarks").val(),
+                valid = true
+
+            if (!firstName) {
+                valid = false;
+                $("#firstName").parent().addClass('has-error');
+
             }
-            console.log("-----Values----", studentDetails)
-            socket.emit("save student details", studentDetails)
+            if (!lastName) {
+                valid = false
+                $("#lastName").parent().addClass('has-error');
+            }
+            if (!age) {
+                valid = false
+                $("#age").parent().addClass('has-error');
+            }
+            if (!address) {
+                valid = false
+                $("#address").parent().addClass('has-error');
+            }
+            if (!status) {
+                valid = false
+                $("#studentStatus").parent().addClass('has-error');
+            }
+            if (!remarks) {
+                valid = false
+                $("#remarks").parent().addClass('has-error');
+            }
+
+
+            if(valid) {
+                $("#firstName").parent().addClass('has-success').removeClass('has-error');
+                $("#lastName").parent().addClass('has-success').removeClass('has-error');
+                $("#age").parent().addClass('has-success').removeClass('has-error');
+                $("#address").parent().addClass('has-success').removeClass('has-error');
+                $("#studentStatus").parent().addClass('has-success').removeClass('has-error');
+                $("#remarks").parent().addClass('has-success').removeClass('has-error');
+            }
+            return valid
+
+        }
+
+        var validation = new Validation()
+
+        $("#addStudent").click(function () {
+            if(validation.validate()) {
+                $("#addStudent").text("Adding......")
+                var studentDetails = {
+                    firstName: $("#firstName").val(),
+                    lastName: $("#lastName").val(),
+                    age: $("#age").val(),
+                    Address: $("#address").val(),
+                    status: $("#studentStatus").val(),
+                    remarks: $("#remarks").val()
+                }
+
+                console.log("-----Values----", studentDetails)
+                socket.emit("save student details", studentDetails)
+            }
             socket.on("save student response", function (response) {
                 console.log(response)
                 var responseValues = response.responseData

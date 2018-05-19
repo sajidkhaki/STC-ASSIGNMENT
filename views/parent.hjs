@@ -149,6 +149,7 @@
         })
 
         $("#buttonSubmit").click(function () {
+            $("#buttonSubmit").text("submitting....")
             var details ={
                 studentId:$("#studentId").val()
 
@@ -157,6 +158,7 @@
             socket.on("get student data response value", function (response) {
                 $('#studentTable').dataTable().fnDeleteRow(0, null, true);
                 studentData = response
+                $("#buttonSubmit").text("Submit")
                 console.log(response)
                 if(studentData.length>=1){
                     studentData.forEach(function (operations) {
