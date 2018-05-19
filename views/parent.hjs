@@ -159,7 +159,7 @@
                 $('#studentTable').dataTable().fnDeleteRow(0, null, true);
                 studentData = response
                 $("#buttonSubmit").text("Submit")
-                console.log(response)
+               // console.log(response)
                 if(studentData.length>=1){
                     studentData.forEach(function (operations) {
                         studentTable.row.add([

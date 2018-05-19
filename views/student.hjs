@@ -139,7 +139,7 @@
         socket.on("get student data response", function (response) {
             $('#studentTable').dataTable().fnDeleteRow(0, null, true);
             studentData = response
-            console.log(response)
+            //console.log(response)
             if(studentData){
                 studentData.forEach(function (operations) {
                     studentTable.row.add([

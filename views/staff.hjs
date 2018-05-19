@@ -213,7 +213,7 @@
         })
 
         socket.on("get student response", function (details) {
-            console.log(details)
+           // console.log(details)
             $('#studentTable').dataTable().fnDeleteRow(0, null, true);
             studentData = details
             if(studentData){
@@ -301,11 +301,11 @@
                     remarks: $("#remarks").val()
                 }
 
-                console.log("-----Values----", studentDetails)
+                //console.log("-----Values----", studentDetails)
                 socket.emit("save student details", studentDetails)
             }
             socket.on("save student response", function (response) {
-                console.log(response)
+                //console.log(response)
                 var responseValues = response.responseData
                 if (response.responseCode == "000") {
                     $.notify("Student has been successfully Added.", "success");
@@ -331,9 +331,9 @@
             $("#updateStudent").show()
             $("#addStudent").hide()
             var rowId = row.target.id;
-            console.log(rowId)
+            //console.log(rowId)
             studentId = parseInt(rowId.split('_')[0]);
-            console.log(studentId)
+            //console.log(studentId)
             for (var i = 0; i < studentData.length; i++) {
                 if (studentData[i].studentId === studentId) {
                     selectedAgreement = studentData[i];
