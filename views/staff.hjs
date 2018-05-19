@@ -66,6 +66,14 @@
             }
         }
     </style>
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -149,7 +157,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Age</label>
-                                <input id="age" name="age"  minlength="2" maxlength="50"  type="text" class="form-control input-sm" >
+                                <input id="age" name="age"  minlength="1" maxlength="3"  onkeypress="return isNumberKey(event)" type="text" class="form-control input-sm" >
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -300,6 +308,7 @@
                 console.log(response)
                 var responseValues = response.responseData
                 if (response.responseCode == "000") {
+                    $.notify("Student has been successfully Added.", "success");
                     $("#addStudent").text("Add")
                     studentTable.row.add([
                         responseValues.studentId ? responseValues.studentId : 'N/A',
@@ -312,7 +321,6 @@
                     ]).draw(false)
                     studentData.push(responseValues)
                     $('#studentModal').modal('hide')
-                    $.notify("Student has been successfully Added.", "success");
                 } else {
                     $.notify("Cannot Add Student.", "error");
                 }
@@ -392,6 +400,13 @@
             $("#age").val('')
             $("#address").val('')
             $("#remarks").val('')
+            $("#firstName").parent().removeClass('has-success').removeClass('has-error');
+            $("#lastName").parent().removeClass('has-success').removeClass('has-error');
+            $("#age").parent().removeClass('has-success').removeClass('has-error');
+            $("#address").parent().removeClass('has-success').removeClass('has-error');
+            $("#studentStatus").parent().removeClass('has-success').removeClass('has-error');
+            $("#remarks").parent().removeClass('has-success').removeClass('has-error');
+
 
 
 
