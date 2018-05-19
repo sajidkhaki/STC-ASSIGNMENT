@@ -53,6 +53,18 @@
                 <p>In student Panel, Students can only check Active Students....</p>
                    </div>
                </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="widget-panel widget-style-2 bg-white">
+                        <i class="md md-store-mall-directory text-info"></i>
+                        <p class="loading1">
+                        <img src="images/loading.gif">
+                        </p>
+                        <h2 class="m-0 text-dark counter font-600" id="totalActiveUsers" style="font-size: 20px;"></h2>
+                        <div class="text-muted m-t-5">Total Activated Students</div>
+                    </div>
+                </div>
+            </div>
             <hr>
                 <h1>Staff Panel</h1>
                 <p>In Staff Panel, Staff can Create and update the Details of Any Student...</p>
@@ -69,6 +81,27 @@
 <footer class="container-fluid">
     <p style="text-align: center">Copyright@ sajid ashraf khaki</p>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+<script src="../javascripts/countTo.js"></script>
+<script>
+
+    $("#document").ready(function () {
+        var socket = io.connect();
+        socket.emit("load total activated students")
+        socket.on("get total students count", function (data) {
+            console.log(data)
+            $('.loading1').hide();
+            $('#totalActiveUsers').countTo({
+                from: 1,
+                to: data,
+                speed: 2333,
+                refreshInterval: 50
+            });
+
+        })
+    })
+</script>
+
 
 </body>
 </html>
