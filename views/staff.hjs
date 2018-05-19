@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Satff</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.16/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Import jQuery before export.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+    <!--Data Table-->
+    <script type="text/javascript"  src=" https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+    <!--Export table buttons-->
+    <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js" ></script>
+    <script type="text/javascript"  src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+    <script src="/javascripts/notify.js"></script>
+    <!--Export table button CSS-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 900px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: 69px;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+    </style>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-3 col-md-1 sidenav">
+            <h5>ASSIGNMENT</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="/">Home</a></li>
+                <li><a href="/staff">Staff</a></li>
+                <li><a href="/student">Student</a></li>
+                <li><a href="/parent">Parents</a></li>
+            </ul><br>
+        </div>
+        <div class="row" style="background-color:#555; height: 69px">
+            <div class="col-md-1">
+                <a class="btn btn-primary" href="#" style="float: right; margin-top: 25px; margin-right: -1208px" data-toggle="modal" data-target="#studentModal" id="addNewStudent">Register Students</a>
+                <h4></h4>
+            </div>
+        </div>
+        <div class ="row" style="margin-top: 15px">
+            <div class="col-md-10">
+                <table class="table table-striped table-bordered  table-hover" cell-spacing = "0" width = "100%" id="studentTable">
+                    <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Age</th>
+                        <th>Adddres</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                        <td><img src="images/loading.gif"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="container-fluid">
+    <p style="text-align: center">Copyright@ sajid ashraf khaki</p>
+</footer>
+</body>
+</html>
+<div id="studentModal" class="modal in"role="dialog"  data-backdrop="false">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content animated bounceIn">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title" id="viewAgreement">Add Student</h4>
+            </div>
+            <div class="modal-body form ">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">First Name</label>
+                                <input id="firstName" name="firstName"  minlength="2" maxlength="50" type="text" class="form-control input-sm" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Last Name</label>
+                                <input type="text" minlength="2" maxlength="50"  id="lastName"  name="lastName"  class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Age</label>
+                                <input id="age" name="age"  minlength="2" maxlength="50"  type="text" class="form-control input-sm" >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Address</label>
+                                <input type="text" minlength="2" maxlength="50"   id="address"  name="address"  class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Student Status</label>
+                                <select class="form-control" id="studentStatus">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">InActive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Remarks</label>
+                                <input type="text" minlength="2" maxlength="50"   id="remarks"  name="address"  class="form-control input-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary"  id="addStudent" value="submit"  name="addStudent">Add</button>
+                <button class="btn btn-primary"  id="updateStudent" value="submit"  name="updateStudent" style="display: none">Update</button>
+                <button class="btn btn-primary"  data-dismiss="modal" style="margin-right: 14px;" type="submit" >Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+<script>
+    $(document).ready(function () {
+        var socket = io.connect();
+        var clickedRowId, selectedAgreement,studentData=[],studentId
+        socket.emit("load students")
+        var  studentTable = $('#studentTable').DataTable({
+            "order": [[0, "asc"]],
+            scrollX :true,
+            'fnCreatedRow': function (nRow, aData, iDataIndex) {
+                $(nRow).attr('id', iDataIndex);
+            }
+        });
+        $('#studentTable tbody').on('click', 'tr', function () {
+            clickedRowId = studentTable.row(this).index();
+        })
+
+        socket.on("get student response", function (details) {
+            console.log(details)
+            $('#studentTable').dataTable().fnDeleteRow(0, null, true);
+            studentData = details
+            if(studentData){
+                studentData.forEach(function (operations) {
+                    studentTable.row.add([
+                        operations.studentId?operations.studentId:'N/A',
+                        operations.firstName?operations.firstName:'N/A',
+                        operations.lastName?operations.lastName:'N/A',
+                        operations.age?operations.age:'N/A',
+                        operations.Address?operations.Address:'N/A',
+                        "<span><a href='#'>" + (operations.status === true ? "<i class ='fa fa-check' id=" + operations.studentId + "_status" + " style='color: green;'></i>" : "<i class='fa fa-times' style='color: red;' id=" + operations.studentId + "_status" + "></i>") + "</a></span>",
+                        "<span><a href='#'><i class='fa fa-edit edit' id=" + operations.studentId + "_edit" + "></i> </a></span>"
+                    ]).draw(false)
+                })
+            }else{
+                $.notify("No Active Students Available.","error");
+            }
+        })
+
+        $("#addStudent").click(function () {
+            $("#addStudent").text("Adding......")
+
+            var studentDetails = {
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                age: $("#age").val(),
+                Address: $("#address").val(),
+                status: $("#studentStatus").val(),
+                remarks:$("#remarks").val()
+            }
+            console.log("-----Values----", studentDetails)
+            socket.emit("save student details", studentDetails)
+            socket.on("save student response", function (response) {
+                console.log(response)
+                var responseValues = response.responseData
+                if (response.responseCode == "000") {
+                    $("#addStudent").text("Add")
+                    studentTable.row.add([
+                        responseValues.studentId ? responseValues.studentId : 'N/A',
+                        responseValues.firstName ? responseValues.firstName : 'N/A',
+                        responseValues.lastName ? responseValues.lastName : 'N/A',
+                        responseValues.age ? responseValues.age : 'N/A',
+                        responseValues.Address ? responseValues.Address : 'N/A',
+                        "<span><a href='#'>" + (responseValues.status == true ? "<i class ='fa fa-check' id=" + responseValues.studentId + "_status" + " style='color: green;'></i>" : "<i class='fa fa-times' style='color: red;' id=" + responseValues.studentId + "_status" + "></i>") + "</a></span>",
+                        "<span><a href='#'><i class='fa fa-edit edit' id=" + responseValues.studentId + "_edit" + "></i> </a></span>"
+                    ]).draw(false)
+                    studentData.push(responseValues)
+                    $('#studentModal').modal('hide')
+                    $.notify("Student has been successfully Added.", "success");
+                } else {
+                    $.notify("Cannot Add Student.", "error");
+                }
+            })
+        })
+        // edit
+        $('#studentTable').on('click', 'i.edit', function(row) {
+            $("#updateStudent").show()
+            $("#addStudent").hide()
+            var rowId = row.target.id;
+            console.log(rowId)
+            studentId = parseInt(rowId.split('_')[0]);
+            console.log(studentId)
+            for (var i = 0; i < studentData.length; i++) {
+                if (studentData[i].studentId === studentId) {
+                    selectedAgreement = studentData[i];
+                    break;
+                }
+            }
+            let value;
+            var typeStatus=selectedAgreement.status
+            if (typeStatus==true){
+                value=1;
+            }
+            else {
+                value=0;
+            }
+            $("#firstName").val(selectedAgreement.firstName);
+            $("#lastName").val(selectedAgreement.lastName);
+            $("#age").val(selectedAgreement.age);
+            $("#address").val(selectedAgreement.Address);
+            $("#remarks").val(selectedAgreement.remarks);
+            $("#studentStatus").val(value);
+            $('#studentModal').modal('show')
+        })
+
+        $("#updateStudent").click(function () {
+            $("#updateStudent").text("Updating......")
+            var updateDetails = {
+                firstName: $("#firstName").val(),
+                lastName: $("#lastName").val(),
+                age: $("#age").val(),
+                Address: $("#address").val(),
+                status: $("#studentStatus").val(),
+                remarks:$("#remarks").val()
+            }
+            socket.emit("update student details", updateDetails, studentId)
+            socket.on("student details updated", function (response) {
+                $('#studentModal').modal('hide');
+                var TypeStatus=(updateDetails.status=="1") ? "<i class ='fa fa-check'  style='color: green;'></i>":"<i class='fa fa-times' style='color: red;'" + "></i>";
+                $.notify("Student has been successfully Updated.","success");
+                $('#studentTable').dataTable().fnUpdate([updateDetails.firstName], $("tr#" + clickedRowId)[0], 1);
+                $('#studentTable').dataTable().fnUpdate([updateDetails.lastName], $("tr#" + clickedRowId)[0], 2);
+                $('#studentTable').dataTable().fnUpdate([updateDetails.age], $("tr#" + clickedRowId)[0], 3);
+                $('#studentTable').dataTable().fnUpdate([updateDetails.Address], $("tr#" + clickedRowId)[0], 4);
+                $('#studentTable').dataTable().fnUpdate([(TypeStatus)], $("tr#" + clickedRowId)[0], 5);;
+
+                for (var i = 0; i < studentData.length; i++) {
+
+                    if (studentData[i].studentId === studentId) {
+                        studentData[i].firstName = updateDetails.firstName;
+                        studentData[i].lastName = updateDetails.lastName;
+                        studentData[i].age = updateDetails.age;
+                        studentData[i].Address = updateDetails.Address;
+                        studentData[i].status = updateDetails.status;
+                        studentData[i].remarks = updateDetails.remarks;
+                        break;
+                    }
+                }
+            });
+        })
+        $("#addNewStudent").click(function () {
+            $("#updateStudent").hide()
+            $("#addStudent").show()
+            $("#firstName").val('')
+            $("#lastName").val('')
+            $("#age").val('')
+            $("#address").val('')
+            $("#remarks").val('')
+
+
+
+
+        })
+    })
+</script>

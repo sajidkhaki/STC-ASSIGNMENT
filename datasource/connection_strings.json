@@ -1,0 +1,8 @@
+{
+    "local" : {
+        "database": "testassignment",
+        "username": "myadmin@testassignment",
+        "password": "s@jid123",
+        "host":"testassignment.mysql.database.azure.com"
+    }
+}

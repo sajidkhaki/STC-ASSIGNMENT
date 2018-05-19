@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>STC ASSIGNMENT</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {height: 1500px}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height: auto;}
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 col-md-1 sidenav">
+            <h5>ASSIGNMENT</h5>
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="/">Home</a></li>
+                <li><a href="/staff">Staff</a></li>
+                <li><a href="/student">Student</a></li>
+                <li><a href="/parent">Parents</a></li>
+            </ul><br>
+        </div>
+        <div class="col-md-10">
+               <div class="row">
+                   <div class="col-md-5">
+                <h1>Student Panel</h1>
+                <p>In student Panel, Students can only check Active Students....</p>
+                   </div>
+               </div>
+            <hr>
+                <h1>Staff Panel</h1>
+                <p>In Staff Panel, Staff can Create and update the Details of Any Student...</p>
+
+            <hr>
+                <h1>Parent Panel</h1>
+                <p>In Parent Panel, Parent can check Students with their Status...</p>
+        </div>
+    </div>
+</div>
+
+
+
+<footer class="container-fluid">
+    <p style="text-align: center">Copyright@ sajid ashraf khaki</p>
+</footer>
+
+</body>
+</html>
