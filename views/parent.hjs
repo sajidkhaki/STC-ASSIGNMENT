@@ -161,6 +161,7 @@
                 $("#buttonSubmit").text("Submit")
                // console.log(response)
                 if(studentData.length>=1){
+                    $("#studentId").val('')
                     studentData.forEach(function (operations) {
                         studentTable.row.add([
                             operations.studentId?operations.studentId:'N/A',
